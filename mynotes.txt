@@ -1,0 +1,79 @@
+#1. Download and install minikube
+#2. Download and Install kubectl
+#3. enable hyperv on windows
+#4. execute command
+minikube start --driver=hyperv
+#5. To check that the created host is running 
+minikube status
+#6. To check the host IP 
+minukube IP
+#7. Login via 
+ssh minikube ssh
+#8. to check if docker is intalled(hyperv)
+docker ps
+#9. check the cluster info(host) 
+kubectl cluster-info
+#10. to get node
+kubectl get nodes
+#11. to check list of pods
+kubectl get pods
+#12. to check list of namespaces
+kubectl get namespaces
+#13. to check list pods by namespaces
+kubectl get pods --namespace=kube-system
+
+# Skipped others
+#14. delete all service and deployments from the default namespace
+kubectl delete all --all
+
+
+
+#### Yaml part
+# sample github repo
+# https://github.com/wmadiano/k8s.git
+#1. Applying yaml file
+kubectl apply -f deployment.yaml
+#2. apply service
+kubectl apply service.yaml
+#3. get list of service
+kubectl get svc
+#4. get list of deployments
+kubectl get deploy
+
+# apply multiple files
+kubectl apply -f deployment.yaml -f service.yaml
+
+#5. delete by multiple file
+kubectl delete -f deployment.yaml -f service.yaml
+
+#5. get pods
+kubectl get pods
+
+#6. Scenario is k8s web is calling nginx apply
+kubectl apply -f k8s-web-to-nginx.yaml -f nginx.yaml
+
+#7. Scenario is k8s web is calling nginx delete
+kubectl delete -f k8s-web-to-nginx.yaml -f nginx.yaml
+
+#8. to test the inside the cluster just login to the hyperv
+minikube ssh
+
+#9. curl or test the cluster ips
+curl 10.97.87.154:80
+
+#10. open from browser and display the ip
+minikube service k8s-web-to-nginx
+
+#11. http://172.28.139.108:30949/nginx
+
+#12. Scale deployment up or down
+kubectl scale deployment/nginx --replicas=4
+kubectl scale deployment/k8s-web-to-nginx --replicas=6
+
+#13. you can also scale from deployment yaml then re apply
+
+#14. Test nslookup. get cluster IP of a specific pod
+kubectl exec k8s-web-to-nginx-7b49df64f8-966gx -- nslookup nginx
+
+#15. dislay the the nginex as text
+kubectl exec k8s-web-to-nginx-7b49df64f8-966gx -- wget -qO- http://nginx
