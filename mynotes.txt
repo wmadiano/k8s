@@ -6,7 +6,7 @@ minikube start --driver=hyperv
 #5. To check that the created host is running 
 minikube status
 #6. To check the host IP 
-minukube IP
+minikube ip
 #7. Login via 
 ssh minikube ssh
 #8. to check if docker is intalled(hyperv)
@@ -77,3 +77,13 @@ kubectl exec k8s-web-to-nginx-7b49df64f8-966gx -- nslookup nginx
 
 #15. dislay the the nginex as text
 kubectl exec k8s-web-to-nginx-7b49df64f8-966gx -- wget -qO- http://nginx
+
+#16. show node list
+minikube node list
+
+#17. ssh a specific node
+# minikube ssh -n <node_name>
+
+
+#18. Delete a node
+minikube node delete minikube-m02
