@@ -87,3 +87,14 @@ minikube node list
 
 #18. Delete a node
 minikube node delete minikube-m02
+
+#19 map cluster ip to host
+# for windows edit and add the following on this directory C:\Windows\System32\Drivers\etc\hosts
+172.19.55.58 api.test.com
+
+#20 enable ingress controller for minikube
+minikube addons enable ingress
+
+#21 stop minikube
+minikube stop
+
