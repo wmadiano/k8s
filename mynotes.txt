@@ -98,3 +98,6 @@ minikube addons enable ingress
 #21 stop minikube
 minikube stop
 
+#22 Port forward a service(cluster)
+kubectl port-forward service/api01-service 50:80
+
